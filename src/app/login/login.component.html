@@ -1,0 +1,38 @@
+<div class="container">
+  <form #loginForm="ngForm">
+    <div class="row align-items-center">
+      <div class="col-6 offset-2">
+        <div class="form-group">
+          <div class="input-group input-group-lg">
+            <input type="email" class="form-control" [(ngModel)]="emailID" #emailModel="ngModel" placeholder="Email ID"
+              aria-label="Email ID" name="emailID" required email>
+          </div>
+          <div *ngIf="!emailModel.pristine && !emailModel.valid && emailModel.errors.required" class="alert alert-danger">
+            Email is required
+          </div>
+          <div *ngIf="!emailModel.valid && emailModel.errors.email" class="alert alert-danger">
+            Not a valid email ID
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-6 offset-2">
+        <div class="form-group">
+          <div class="input-group input-group-lg">
+            <input type="password" class="form-control" [(ngModel)]="password" placeholder="Password" aria-label="Password"
+              name="password" #pass="ngModel" required>
+          </div>
+          <div [hidden]="pass.valid || pass.pristine" class="alert alert-danger">
+              Password is required
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="row align-items-center">
+      <div class="col-6 offset-2">
+        <button type="button" class="btn btn-primary btn-lg btn-block" [disabled]="!loginForm.form.valid" (click)="onClick()">Sign In</button>
+      </div>
+    </div>
+  </form>
+</div>
