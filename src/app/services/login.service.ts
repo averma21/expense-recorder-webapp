@@ -16,9 +16,11 @@ export class LoginService {
       error: err => {
         console.error('Observer got following error: ');
         console.error(err);
-        errorFn();
+        errorFn(err);
       },
-      complete: () => successFn()
+      next: (res: string) => {
+        successFn(res)
+      }
     })
   }
 
